@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>¿Me quieres?</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#ffe4ec;
+    overflow:hidden;
+}
+
+#pantalla1,
+#pantalla2{
+    text-align:center;
+}
+
+#pantalla2{
+    display:none;
+}
+
+button{
+    padding:12px 24px;
+    font-size:18px;
+    margin:15px;
+    cursor:pointer;
+    border:none;
+    border-radius:10px;
+}
+
+#si{
+    position:absolute;
+    left:45%;
+    top:55%;
+    transition:0.12s;
+}
+
+#no{
+    position:absolute;
+    left:55%;
+    top:55%;
+}
+
+h1,h2{
+    color:#d63384;
+}
+</style>
+
+</head>
+<body>
+
+<!-- Música -->
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div id="pantalla1">
+    <h1>¿Tú me quieres? ❤️</h1>
+
+    <button id="si">Sí</button>
+    <button id="no">No</button>
+</div>
+
+<div id="pantalla2">
+    <h1>💔 Oh... no me quieres.</h1>
+    <h2>Lo sabía... vete con la otra. 😔</h2>
+</div>
+
+<script>
+
+const btnSi=document.getElementById("si");
+const btnNo=document.getElementById("no");
+const musica=document.getElementById("musica");
+
+// Reproduce la música en el primer clic
+document.addEventListener("click",()=>{
+    musica.play();
+},{once:true});
+
+// El botón "Sí" escapa
+function moverBoton(){
+
+    let ancho=window.innerWidth-120;
+    let alto=window.innerHeight-60;
+
+    let x=Math.random()*ancho;
+    let y=Math.random()*alto;
+
+    btnSi.style.left=x+"px";
+    btnSi.style.top=y+"px";
+}
+
+btnSi.addEventListener("mouseover",moverBoton);
+btnSi.addEventListener("click",moverBoton);
+
+// Si presionan NO...
+btnNo.addEventListener("click",()=>{
+
+    document.getElementById("pantalla1").style.display="none";
+    document.getElementById("pantalla2").style.display="block";
+
+});
+
+</script>
+
+</body>
+</html>
